@@ -1,0 +1,14 @@
+.file-list {
+  font-family: Helvetica, sans-serif;
+  /* So there are two conditions here, that the width of the element can be 100% of the parent element if it wants to
+   but it must not never be more than 980px. 
+   - If the parent is 1024 pixel, instead of taking 100% of the parent it will only take 980px. 
+   - The width can be less than the alocated width but never more.
+   */
+  width: 100%;
+  max-width: 980px;
+  color: #333;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
