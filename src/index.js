@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import './index.css';
+
+import FileListItem from './components/FileListItem';
 
 const FileList = ({ files }) => (
   <table className="file-list">
@@ -15,56 +16,6 @@ const FileList = ({ files }) => (
 
 FileList.propTypes = {
   files: PropTypes.array,
-};
-
-function FileIcon({ file }) {
-  let icon = 'fa-file-text-o';
-  if (file.type === 'folder') {
-    icon = 'fa-folder';
-  }
-  return (
-    <td className="file-icon">
-      <i className={`fa ${icon}`}></i>
-    </td>
-  );
-}
-
-FileIcon.propTypes = {
-  file: PropTypes.object.isRequired,
-};
-
-function FileName({ file }) {
-  return (
-    <>
-      <FileIcon file={file} />
-      <td className="file-name">{file.name}</td>
-    </>
-  );
-}
-
-FileName.propTypes = {
-  file: PropTypes.object.isRequired,
-};
-
-// passing only the commit and not the whole data structure
-
-const CommitMessage = ({ commit }) => (
-  <td className="commit-message">{commit.message}</td>
-);
-
-CommitMessage.propTypes = {
-  commit: PropTypes.object.isRequired,
-};
-
-const FileListItem = ({ file }) => (
-  <tr className="file-list-item">
-    <FileName file={file} />
-    <CommitMessage commit={file.latestCommit} />
-  </tr>
-);
-
-FileListItem.propTypes = {
-  file: PropTypes.object.isRequired,
 };
 
 const testFiles = [
