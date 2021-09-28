@@ -17,15 +17,54 @@ FileList.propTypes = {
   files: PropTypes.array,
 };
 
+function FileIcon({ file }) {
+  let icon = 'fa-file-text-o';
+  if (file.type === 'folder') {
+    icon = 'fa-folder';
+  }
+  return (
+    <td className="file-icon">
+      <i className={`fa ${icon}`}></i>
+    </td>
+  );
+}
+
+FileIcon.propTypes = {
+  file: PropTypes.object.isRequired,
+};
+
+function FileName({ file }) {
+  return (
+    <>
+      <FileIcon file={file} />
+      <td className="file-name">{file.name}</td>
+    </>
+  );
+}
+
+FileName.propTypes = {
+  file: PropTypes.object.isRequired,
+};
+
+// passing only the commit and not the whole data structure
+
+const CommitMessage = ({ commit }) => (
+  <td className="commit-message">{commit.message}</td>
+);
+
+CommitMessage.propTypes = {
+  commit: PropTypes.object.isRequired,
+};
+
 const FileListItem = ({ file }) => (
-  // extracted from FileList
-  <tr key={file.id}>
-    <td>{file.name}</td>
+  <tr className="file-list-item">
+    <FileName file={file} />
+    <CommitMessage commit={file.latestCommit} />
   </tr>
 );
 
 FileListItem.propTypes = {
-  file: PropTypes.object,
+  file: PropTypes.object.isRequired,
 };
 
 const testFiles = [
